@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter_map">
+    <sys_ws_query_parameter_map action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ws_query_parameter_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-02-06 21:33:11</sys_created_on>
+        <sys_id>cde85a2fc8022010076da4e4cdce1fd2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>a958d22fc8022010076da4e4cdce1f95</sys_name>
+        <sys_package display_value="Mid Server Installer" source="f8389eebc8022010076da4e4cdce1ff1">f8389eebc8022010076da4e4cdce1ff1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Mid Server Installer">f8389eebc8022010076da4e4cdce1ff1</sys_scope>
+        <sys_update_name>sys_ws_query_parameter_map_cde85a2fc8022010076da4e4cdce1fd2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-02-06 21:33:11</sys_updated_on>
+        <web_service_operation display_value="GetInstallerURL">90a8d62fc8022010076da4e4cdce1f2d</web_service_operation>
+        <web_service_query_parameter display_value="packageName">a958d22fc8022010076da4e4cdce1f95</web_service_query_parameter>
+    </sys_ws_query_parameter_map>
+</record_update>
