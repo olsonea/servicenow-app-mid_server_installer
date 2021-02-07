@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter">
     <sys_ws_query_parameter action="INSERT_OR_UPDATE">
         <example_value>mid,mid-windows-installer</example_value>
-        <name>packageName</name>
+        <name>name</name>
         <required>false</required>
         <short_description/>
         <sys_class_name>sys_ws_query_parameter</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-02-06 21:30:59</sys_created_on>
         <sys_id>a958d22fc8022010076da4e4cdce1f95</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>packageName</sys_name>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>name</sys_name>
         <sys_package display_value="Mid Server Installer" source="f8389eebc8022010076da4e4cdce1ff1">f8389eebc8022010076da4e4cdce1ff1</sys_package>
         <sys_policy/>
         <sys_scope display_value="Mid Server Installer">f8389eebc8022010076da4e4cdce1ff1</sys_scope>
         <sys_update_name>sys_ws_query_parameter_a958d22fc8022010076da4e4cdce1f95</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-02-06 21:30:59</sys_updated_on>
+        <sys_updated_on>2021-02-06 22:31:02</sys_updated_on>
         <web_service_definition display_value="Mid Server Installer">2148922fc8022010076da4e4cdce1fd3</web_service_definition>
     </sys_ws_query_parameter>
 </record_update>
