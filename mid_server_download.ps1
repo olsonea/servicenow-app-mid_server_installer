@@ -18,7 +18,7 @@ $headers.Add('Content-Type','application/json')
 
 # Specify endpoint uri
 #$uri = "https://" + $instance + "/api/1234/mid_server_installer?name=" + $name + "&operatingSystem=" + $operatingSystem + "&architecture=" + $architecture
-$uri = "https://" + $instance + "/api/1234/mid_server_installer"
+$uri = "https://" + $instance + "/api/1234/mid_server_installer
 
 # Specify HTTP method
 $method = "get"
