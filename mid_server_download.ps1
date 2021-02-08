@@ -1,25 +1,16 @@
 Param(
-    [parameter()][ValidateNotNullOrEmpty()][String]$username=$(throw "username is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$password=$(throw "password is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$instance=$(throw "instance is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$name=$(throw "name is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$operatingSystem=$(throw "operatingSystem is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$architecture=$(throw "architecture is a mandatory parameter, please provide a value.")
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_USERNAME=$(throw "MID_USERNAME is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_PASSWORD=$(throw "MID_PASSWORD is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$INSTANCE_URL=$(throw "INSTANCE_URL is a mandatory parameter, please provide a value.")
+    #[parameter()][ValidateNotNullOrEmpty()][String]$name=$(throw "name is a mandatory parameter, please provide a value."),
+    #[parameter()][ValidateNotNullOrEmpty()][String]$operatingSystem=$(throw "operatingSystem is a mandatory parameter, please provide a value."),
+    #[parameter()][ValidateNotNullOrEmpty()][String]$architecture=$(throw "architecture is a mandatory parameter, please provide a value.")
 )
 
-Write-Output $username, $instance #, $name, $operatingSystem, $architecture
-
-# Eg. User name="admin", Password="admin" for this code sample.
-#$username = "integration.mid"
-#$password = "integration.mid"
-
-#$instance = 'snow.heathcraft.com'
-#$name = 'mid-windows-installer'
-#$operatingSystem = 'windows'
-#$architecture = 'x86-64'
+Write-Output $MID_USERNAME, $INSTANCE_URL
 
 # Build auth header
-$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username, $password)))
+$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $MID_USERNAME, $MID_PASSWORD)))
 
 # Set proper headers
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
@@ -28,11 +19,13 @@ $headers.Add('Accept','application/json')
 $headers.Add('Content-Type','application/json')
 
 # Specify endpoint uri
-#$uri = "https://" + $instance + "/api/1234/mid_server_installer?name=" + $name + "&operatingSystem=" + $operatingSystem + "&architecture=" + $architecture
-$uri = "https://" + $instance + "/api/1234/mid_server_installer"
+#$uri = "https://${INSTANCE_URL}/api/1234/mid_server_installer?name=${name}&operatingSystem=${operatingSystem}&architecture=${architecture}
+$uri = $INSTANCE_URL + "/api/1234/mid_server_installer"
 
 # Specify HTTP method
 $method = "get"
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls -bor [Net.SecurityProtocolType]::Tls11 -bor [Net.SecurityProtocolType]::Tls12
 
 # Send HTTP request
 $installerURL = (Invoke-RestMethod -Headers $headers -Method $method -Uri $uri).result
@@ -42,4 +35,8 @@ $filename = $installerURL.Substring($installerURL.LastIndexOf("/") + 1)
 Write-Output "filename: " + $filename
 
 # Print response
-$downloadInstaller = Invoke-RestMethod -Headers $headers -Method $method -Uri $installerURL -OutFile $filename
+if(! (Test-Path $PSScriptRoot\$filename)){
+    $downloadInstaller = Invoke-RestMethod -Headers $headers -Method $method -Uri $installerURL -OutFile $filename
+}
+
+return $filename
