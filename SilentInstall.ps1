@@ -36,9 +36,9 @@ if(-not (Test-Path -Path $INSTALL_LOCATION)) {
 }
 
 <# Verify user isn't populating proxy settings when they aren't going to use a proxy.#>
-if(-not $USE_PROXY -and ($PROXY_HOST -ne "" -or $PROXY_PORT -ne "" -or $PROXY_USERNAME -ne "" -or $PROXY_PASSWORD -ne "")) {
-    throw "PROXY_HOST, PROXY_PORT, PROXY_USERNAME, and PROXY_PASSWORD should only be set when using the USE_PROXY flag.";
-}
+#if(-not $USE_PROXY -and ($PROXY_HOST -ne "" -or $PROXY_PORT -ne "" -or $PROXY_USERNAME -ne "" -or $PROXY_PASSWORD -ne "")) {
+#    throw "PROXY_HOST, PROXY_PORT, PROXY_USERNAME, and PROXY_PASSWORD should only be set when using the USE_PROXY flag.";
+#}
 <# Verify user isn't trying to manually set service name when they aren't using the flag #>
 if(-not $MANUAL_SERVICE_NAME -and ($SERVICE_NAME -ne "" -or $SERVICE_DISPLAY_NAME -ne "")) {
     throw "SERVICE_NAME and SERVICE_DISPLAY_NAME should only be set when using the MANUAL_SERVICE_NAME flag.";
