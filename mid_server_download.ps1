@@ -7,7 +7,7 @@ Param(
     #[parameter()][ValidateNotNullOrEmpty()][String]$architecture=$(throw "architecture is a mandatory parameter, please provide a value.")
 )
 
-Write-Output $MID_USERNAME, $INSTANCE_URL
+#Write-Output $MID_USERNAME, $INSTANCE_URL
 
 # Build auth header
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $MID_USERNAME, $MID_PASSWORD)))
@@ -29,10 +29,10 @@ $method = "get"
 
 # Send HTTP request
 $installerURL = (Invoke-RestMethod -Headers $headers -Method $method -Uri $uri).result
-Write-Output "installerURL: " + $installerURL
+#Write-Output "installerURL: " $installerURL
 
 $filename = $installerURL.Substring($installerURL.LastIndexOf("/") + 1)
-Write-Output "filename: " + $filename
+#Write-Output "filename: " $filename
 
 # Print response
 if(! (Test-Path $PSScriptRoot\$filename)){
