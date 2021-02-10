@@ -1,24 +1,29 @@
 Param(
-  [parameter()][ValidateNotNullOrEmpty()][String]$SERVICE_ACCOUNT_NAME=$(throw "SERVICE_ACCOUNT_NAME is a mandatory parameter, please provide a value."),
-  [parameter()][ValidateNotNullOrEmpty()][String]$SERVICE_ACCOUNT_PASSWORD=$(throw "SERVICE_ACCOUNT_PASSWORD is a mandatory parameter, please provide a value.")
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_NAME=$(throw "MID_NAME is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_USERNAME=$(throw "MID_USERNAME is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_PASSWORD=$(throw "MID_PASSWORD is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$INSTANCE_URL=$(throw "INSTANCE_URL is a mandatory parameter, please provide a value.")
 )
 
-function Add-ServiceLogonRight([string] $Username) {
-  Write-Host "Enable ServiceLogonRight for $Username"
+#Write-Output $MID_USERNAME, $INSTANCE_URL
 
-  $tmp = New-TemporaryFile
-  secedit /export /cfg "$tmp.inf" | Out-Null
-  (gc -Encoding ascii "$tmp.inf") -replace '^SeServiceLogonRight .+', "`$0,$Username" | sc -Encoding ascii "$tmp.inf"
-  secedit /import /cfg "$tmp.inf" /db "$tmp.sdb" | Out-Null
-  secedit /configure /db "$tmp.sdb" /cfg "$tmp.inf" | Out-Null
-  rm $tmp* -ea 0
-}
+# Build auth header
+$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $MID_USERNAME, $MID_PASSWORD)))
 
-# 
-$securePW = ConvertTo-SecureString -String $SERVICE_ACCOUNT_PASSWORD -AsPlainText -Force
+# Set proper headers
+$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$headers.Add('Authorization',('Basic {0}' -f $base64AuthInfo))
+$headers.Add('Accept','application/json')
+$headers.Add('Content-Type','application/json')
 
-# Create local service account
-New-LocalUser -Name $SERVICE_ACCOUNT_NAME -Password $securePW
+# Specify endpoint uri
+$uri = $INSTANCE_URL + "/api/1234/mid_server_installer/validateMidServer?mid_server_name=${MID_NAME}"
 
-# Grant user Logon as a Service permission
-Add-ServiceLogonRight -Username $SERVICE_ACCOUNT_NAME
+# Specify HTTP method
+$method = "POST"
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls -bor [Net.SecurityProtocolType]::Tls11 -bor [Net.SecurityProtocolType]::Tls12
+
+# Send HTTP request
+$validateMidServer = (Invoke-RestMethod -Headers $headers -Method $method -Uri $uri).result
+return $validateMidServer
