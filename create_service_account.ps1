@@ -7,10 +7,10 @@ function Add-ServiceLogonRight([string] $Username) {
 
     $tmp = New-TemporaryFile
     secedit /export /cfg "$tmp.inf" | Out-Null
-    (gc -Encoding ascii "$tmp.inf") -replace '^SeServiceLogonRight .+', "`$0,$Username" | sc -Encoding ascii "$tmp.inf"
+    (Get-Content -Encoding ascii "$tmp.inf") -replace '^SeServiceLogonRight .+', "`$0,$Username" | Set-Content -Encoding ascii "$tmp.inf"
     secedit /import /cfg "$tmp.inf" /db "$tmp.sdb" | Out-Null
     secedit /configure /db "$tmp.sdb" /cfg "$tmp.inf" | Out-Null
-    rm $tmp* -ea 0
+    Remove-Item $tmp* -ea 0
 }
 
 $securePassword = ConvertTo-SecureString $SERVICE_ACCOUNT_PASSWORD -AsPlainText -Force
