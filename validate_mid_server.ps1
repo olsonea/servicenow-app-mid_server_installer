@@ -17,10 +17,11 @@ $headers.Add('Accept','application/json')
 $headers.Add('Content-Type','application/json')
 
 # Specify endpoint uri
-$uri = $INSTANCE_URL + "/api/1234/mid_server_installer/validateMidServer?mid_server_name=${MID_NAME}"
+$uri = "{0}/api/1234/mid_server_installer/validateMidServer?mid_server_name={1}" -f $INSTANCE_URL, $MID_NAME
+Write-Host $uri
 
 # Specify HTTP method
-$method = "get"
+$method = "POST"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls -bor [Net.SecurityProtocolType]::Tls11 -bor [Net.SecurityProtocolType]::Tls12
 
