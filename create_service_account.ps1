@@ -2,6 +2,8 @@ Param(
     [parameter()][ValidateNotNullOrEmpty()][String]$SERVICE_ACCOUNT_NAME=$(throw "SERVICE_ACCOUNT_NAME is a mandatory parameter, please provide a value."),
     [parameter()][ValidateNotNullOrEmpty()][String]$SERVICE_ACCOUNT_PASSWORD=$(throw "SERVICE_ACCOUNT_PASSWORD is a mandatory parameter, please provide a value.")
 )
+
+$securePassword = ConvertTo-SecureString $SERVICE_ACCOUNT_PASSWORD -AsPlainText -Force
 function Add-ServiceLogonRight([string] $Username) {
     Write-Host "Enable ServiceLogonRight for $Username"
 
@@ -12,8 +14,6 @@ function Add-ServiceLogonRight([string] $Username) {
     secedit /configure /db "$tmp.sdb" /cfg "$tmp.inf" | Out-Null
     Remove-Item $tmp* -ea 0
 }
-
-$securePassword = ConvertTo-SecureString $SERVICE_ACCOUNT_PASSWORD -AsPlainText -Force
 
 try{
     New-LocalUser -Name $SERVICE_ACCOUNT_NAME -Password $securePassword
