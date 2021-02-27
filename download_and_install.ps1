@@ -33,7 +33,7 @@ $MSI_FILE_NAME = & $PSScriptRoot\mid_server_download.ps1 -INSTANCE_URL $INSTANCE
 
 # Create the install directory if it doesn't exist.
 if(!(Test-Path -Path $INSTALL_LOCATION)){
-  Write-Output "Creating directory {0]" -f ${INSTALL_LOCATION}
+  Write-Output "Creating directory {0}" -f ${INSTALL_LOCATION}
   New-Item -ItemType Directory -Force -Path ${INSTALL_LOCATION}
 } else {
   Write-Output "Directory exists {0}" -f ${INSTALL_LOCATION}
