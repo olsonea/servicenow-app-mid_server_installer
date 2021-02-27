@@ -1,7 +1,8 @@
 Param(
     [parameter()][ValidateNotNullOrEmpty()][String]$MID_NAME=$(throw "MID_SERVER_NAME is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$MID_USERNAME=$(throw "MID_SERVER_NAME is a mandatory parameter, please provide a value."),
-    [parameter()][ValidateNotNullOrEmpty()][String]$MID_PASSWORD=$(throw "MID_SERVER_NAME is a mandatory parameter, please provide a value.")
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_USERNAME=$(throw "MID_USERNAME is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$MID_PASSWORD=$(throw "MID_PASSWORD is a mandatory parameter, please provide a value."),
+    [parameter()][ValidateNotNullOrEmpty()][String]$INSTANCE_URL=$(throw "INSTANCE_URL is a mandatory parameter, please provide a value.")
 )
 
 #Write-Output $MID_USERNAME, $INSTANCE_URL
