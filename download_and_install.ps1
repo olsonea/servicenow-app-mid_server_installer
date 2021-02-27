@@ -32,11 +32,11 @@ $HOST_NAME = [System.Net.Dns]::GetHostName()
 $MSI_FILE_NAME = & $PSScriptRoot\mid_server_download.ps1 -INSTANCE_URL $INSTANCE_URL -MID_USERNAME $MID_USERNAME -MID_PASSWORD $MID_PASSWORD
 
 # Create the install directory if it doesn't exist.
-if(!(Test-Path -Path "$INSTALL_LOCATION\$MID_NAME")){
-  Write-Output "Creating directory  ${INSTALL_LOCATION}\${MID_NAME}"
-  New-Item -ItemType Directory -Force -Path "${INSTALL_LOCATION}\${MID_NAME}"
+if(!(Test-Path -Path $INSTALL_LOCATION)){
+  Write-Output "Creating directory {0]" -f ${INSTALL_LOCATION}
+  New-Item -ItemType Directory -Force -Path ${INSTALL_LOCATION}
 } else {
-  Write-Output "Directory exists ${INSTALL_LOCATION}\${MID_NAME}"
+  Write-Output "Directory exists {0}" -f ${INSTALL_LOCATION}
 }
 
 # Execute the silent install
