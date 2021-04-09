@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_complex_object">
+    <sys_complex_object action="INSERT_OR_UPDATE">
+        <label/>
+        <name>FD28cb6b67751a2010a29e95b9cd9744f7</name>
+        <namespace>FlowDesigner</namespace>
+        <scope_name>f8389eebc8022010076da4e4cdce1ff1</scope_name>
+        <serialized_content>{"FlowDesigner:FD28cb6b67751a2010a29e95b9cd9744f7":{"$COCollectionField":["String"],"$COCollectionField.$field_facets":{"SimpleMapFacet":"{\"up-shift-collection-level\":\"true\"}"}},"FlowDesigner:FD28cb6b67751a2010a29e95b9cd9744f7.$type_facets":{"SimpleMapFacet":"{\"sourceId\":\"\",\"default_value\":\"\",\"child_hint\":\"\",\"child_maxsize\":\"\",\"label\":\"elementIDArray\",\"mandatory\":\"true\",\"child_name\":\"elementID\",\"uiUniqueId\":\"36f2a392-5542-44db-941e-3e5c38e32e9c\",\"uiTypeLabel\":\"Array.String\",\"co_type_name\":\"FD28cb6b67751a2010a29e95b9cd9744f7\",\"child_label\":\"elementID\",\"child_type_label\":\"String\",\"element_mapping_provider\":\"com.glide.flow_design.action.data.FlowDesignVariableMapper\",\"read_only\":\"false\",\"sourceUiUniqueId\":\"\",\"sourceType\":\"\",\"hint\":null,\"uiType\":\"array.string\",\"child_defaultValue\":\"\",\"child_type\":\"string\",\"order\":\"1\",\"max_length\":\"65000\",\"child_uiUniqueId\":\"8a257331-deb0-4707-99bc-e9dd4c844186\"}"}}</serialized_content>
+        <sys_class_name>sys_complex_object</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-02-19 13:50:49</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e8cb6b67741a2010076d4cf3b4bf0ff7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>FD28cb6b67751a2010a29e95b9cd9744f7</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Mid Server Installer" source="f8389eebc8022010076da4e4cdce1ff1">f8389eebc8022010076da4e4cdce1ff1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Mid Server Installer">f8389eebc8022010076da4e4cdce1ff1</sys_scope>
+        <sys_update_name>sys_complex_object_e8cb6b67741a2010076d4cf3b4bf0ff7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-02-19 13:50:49</sys_updated_on>
+        <type>complex_object_collection</type>
+    </sys_complex_object>
+</record_update>
